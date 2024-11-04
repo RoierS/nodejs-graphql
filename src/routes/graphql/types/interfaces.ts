@@ -15,3 +15,9 @@ export interface ICreateProfileInput {
   isMale: boolean;
   yearOfBirth: number;
 }
+
+export interface ICreatePostInput {
+  title: string;
+  content: string;
+  authorId: string;
+}
