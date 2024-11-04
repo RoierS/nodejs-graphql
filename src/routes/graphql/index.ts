@@ -13,6 +13,7 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         200: gqlResponseSchema,
       },
     },
+
     async handler(req) {
       const { query, variables } = req.body;
 
@@ -20,7 +21,9 @@ const plugin: FastifyPluginAsyncTypebox = async (fastify) => {
         schema,
         source: query,
         variableValues: variables,
-        contextValue: { prisma: fastify.prisma },
+        contextValue: {
+          prisma: fastify.prisma,
+        },
       });
     },
   });
