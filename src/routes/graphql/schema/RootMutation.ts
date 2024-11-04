@@ -209,8 +209,6 @@ export const RootMutation: GraphQLObjectType<unknown, GraphQLContext> =
               },
             },
           }));
-
-          // return true;
         },
       },
 
