@@ -191,7 +191,7 @@ export const RootMutation: GraphQLObjectType<unknown, GraphQLContext> =
       },
 
       subscribeTo: {
-        type: UserType,
+        type: GraphQLBoolean,
         args: {
           userId: { type: new GraphQLNonNull(UUIDType) },
           authorId: { type: new GraphQLNonNull(UUIDType) },
@@ -201,14 +201,16 @@ export const RootMutation: GraphQLObjectType<unknown, GraphQLContext> =
           { userId, authorId }: { userId: string; authorId: string },
           context,
         ) => {
-          return await context.prisma.user.update({
+          return !!(await context.prisma.user.update({
             where: { id: userId },
             data: {
               userSubscribedTo: {
                 create: { authorId },
               },
             },
-          });
+          }));
+
+          // return true;
         },
       },
 
